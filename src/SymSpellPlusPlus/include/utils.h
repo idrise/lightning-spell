@@ -93,7 +93,7 @@ namespace symspell {
     }
 
     struct Hash64 {
-        size_t operator()(ulong k) const { return (k ^ 14695981039346656037ULL) * 1099511628211ULL; }
+        size_t operator()(unsigned long k) const { return (k ^ 14695981039346656037ULL) * 1099511628211ULL; }
     };
 
     struct comp_c_string {
