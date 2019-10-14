@@ -9,7 +9,7 @@
     },
     "gypfile": true,
     "name": "lightning-spell",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "idris elliott",
     "keywords": [
         "spell",
