@@ -1,3 +1,0 @@
-[submodule "opt/submodules/solarized"]
-    path = src/SymSpellPlusPlus
-    url = git@github.com:QwantResearch/SymSpellPlusPlus.git
