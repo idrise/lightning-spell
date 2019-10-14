@@ -1,5 +1,5 @@
-import LightningSpell from "../dist/binding.js";
-//import LightningSpell from './binding'
+
+import {LightningSpell} from './binding'
 
 describe('LightningSpell', () => {
     // it('should allow a custom dictionary to be constructed', () => {

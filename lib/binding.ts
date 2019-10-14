@@ -1,13 +1,13 @@
 const addon = require('../build/Release/lightning-spell-native');
 
-interface ILightningSpellNative
+export interface ILightningSpellNative
 {
     getSuggestions(strName: string): string;
     isCorrectlySpelled(strName: string): boolean;
     createDictionaryEntry(strName: string, count: number): boolean;
 };
 
-class LightningSpell {
+export class LightningSpell {
     constructor(name: string) {
         this._addonInstance = new addon.LightningSpell(name)
     }
@@ -24,5 +24,3 @@ class LightningSpell {
     // private members
     private _addonInstance: ILightningSpellNative;
 }
-
-export = LightningSpell;
