@@ -9,9 +9,13 @@
     },
     "gypfile": true,
     "name": "lightning-spell",
-    "version": "1.0.0",
-    "author": "",
-    "license": "ISC",
+    "version": "0.0.1",
+    "author": "idris elliott",
+    "keywords": "",
+    "engines": {
+        "node": ">=11.0.0"
+    },
+    "license": "MIT",
     "description": "",
     "devDependencies": {
         "@types/jest": "^24.0.18",
