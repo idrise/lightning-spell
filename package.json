@@ -11,12 +11,12 @@
     "name": "lightning-spell",
     "version": "0.0.1",
     "author": "idris elliott",
-    "keywords": "",
+    "keywords": "spell check dictionary word search fast fastest",
     "engines": {
         "node": ">=11.0.0"
     },
     "license": "MIT",
-    "description": "",
+    "description": "Spell checker and suggestions with lightning fast c++ sym spell engine.",
     "devDependencies": {
         "@types/jest": "^24.0.18",
         "@types/node": "^7.10.7",
