@@ -4,8 +4,8 @@
         "node-addon-api": "^1.1.0"
     },
     "scripts": {
-        "postinstall": "tsc",
-        "test": "jest"
+        "prepublish": "tsc",
+        "test": "tsc && jest"
     },
     "gypfile": true,
     "name": "lightning-spell",
