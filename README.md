@@ -11,17 +11,18 @@ Usage
 
 ```
 const lightningSpell = new LightningSpell("test");
+const defaultWordFrequency = 1;
         
-lightningSpell.createDictionaryEntry('united state',1);
-lightningSpell.createDictionaryEntry('united kingdom',1);
+lightningSpell.createDictionaryEntry('united state', defaultWordFrequency);
+lightningSpell.createDictionaryEntry('united kingdom', defaultWordFrequency);
 
-lightningSpell.isCorrectlySpelled('united state')
+lightningSpell.isCorrectlySpelled('united state');
 // Returns true
 
-lightningSpell.isCorrectlySpelled('united stte')
+lightningSpell.isCorrectlySpelled('united stte');
 // Returns false
 
-lightningSpell.getSuggestions('united stte')
+lightningSpell.getSuggestions('united stte');
 // Returns ["united state"]
 
 ```
