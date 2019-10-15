@@ -2,7 +2,7 @@ const addon = require('../build/Release/lightning-spell-native');
 
 export interface ILightningSpellNative
 {
-    getSuggestions(strName: string): string;
+    getSuggestions(strName: string): string[];
     isCorrectlySpelled(strName: string): boolean;
     createDictionaryEntry(strName: string, count: number): boolean;
 };
@@ -12,7 +12,7 @@ export class LightningSpell {
         this._addonInstance = new addon.LightningSpell(name)
     }
 
-    getSuggestions (strName: string) {
+    getSuggestions (strName: string):string[] {
         return this._addonInstance.getSuggestions(strName);
     }
     isCorrectlySpelled (strName: string) {
