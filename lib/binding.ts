@@ -1,4 +1,4 @@
-const addon = require('../build/Release/lightning-spell-native');
+const addon = require('../build/Release/lightning-spell-native.node');
 
 export interface ILightningSpellNative
 {
