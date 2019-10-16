@@ -52,9 +52,15 @@ Napi::Value LightningSpell::GetSuggestions(const Napi::CallbackInfo& info) {
     }
 
     if (!info[0].IsString()) {
-        Napi::TypeError::New(env, "You need to introduce yourself to greet")
+        Napi::TypeError::New(env, "No word to get suggestions for")
           .ThrowAsJavaScriptException();
         return env.Null();
+    }
+    double distance = 1;
+    if (info[1].IsObject()) {
+        if (info[1].As<Napi::Object>().Get("distance").IsNumber()) {
+            distance = info[1].As<Napi::Object>().Get("distance").As<Napi::Number>();
+        }
     }
 
     Napi::String name = info[0].As<Napi::String>();
@@ -62,7 +68,7 @@ Napi::Value LightningSpell::GetSuggestions(const Napi::CallbackInfo& info) {
 
 
     vector< std::unique_ptr<symspell::SuggestItem>> items;
-    this->symSpell.Lookup(searchTerm, symspell::Verbosity::All, 1, items);
+    this->symSpell.Lookup(searchTerm, symspell::Verbosity::All, distance, items);
     
     Napi::Array suggestions = Napi::Array::New(env,items.size());
     int i = 0;
