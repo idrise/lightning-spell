@@ -11,6 +11,7 @@ describe('LightningSpell', () => {
 
         expect(lightningSpell.getSuggestions('united stte')).toEqual(["united state"])
         expect(lightningSpell.getSuggestions('united stte',{ distance:2 })).toEqual(["united state","united states"])
+
     })
     
     it('should spell check a word', () => {
