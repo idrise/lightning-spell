@@ -47,7 +47,7 @@
 using namespace std;
 
 namespace symspell {
-#define defaultMaxEditDistance 2
+#define defaultMaxEditDistance 1
 #define defaultPrefixLength 7
 #define defaultCountThreshold 1
 #define defaultInitialCapacity 1024
