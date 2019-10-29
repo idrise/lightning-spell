@@ -23,7 +23,7 @@ namespace symspell {
         this->deletesEnd = this->deletes.end();
         this->wordsEnd = this->words.end();
         this->belowThresholdWordsEnd = this->belowThresholdWords.end();
-        this->candidates.reserve(32);
+        //this->candidates.reserve(32);
         //this->maxDictionaryWordLength = 0;
     }
 
@@ -207,10 +207,13 @@ namespace symspell {
 
     void SymSpell::Lookup(string& input, Verbosity verbosity, int maxEditDistance, bool includeUnknown, vector<std::unique_ptr<symspell::SuggestItem>> & suggestions)
     {
+        vector<string> candidates;
+        unordered_set<size_t> hashset1; //TODO: use unordered_set<size_t> hashset1;
+        unordered_set<size_t> hashset2; //TODO: use unordered_set<size_t> hashset1;
+        unordered_set<size_t>::iterator hashset2End;  //TODO: use unordered_set<size_t>::iterator hashset2End; 
+
         mtx.lock();
-        suggestions.clear();
-        edits.clear();
-        candidates.reserve(32);
+        //candidates.reserve(32);
 
         //verbosity=Top: the suggestion with the highest term frequency of the suggestions of smallest edit distance found
         //verbosity=Closest: all suggestions of smallest edit distance found, the suggestions are ordered by term frequency
@@ -223,9 +226,15 @@ namespace symspell {
         size_t suggestionsLen = 0;
         auto wordsFinded = words.find(input);
         int inputLen = (int)input.size();
+
+
+
+
+
         // early exit - word is too big to possibly match any words
         if (inputLen - maxEditDistance > maxDictionaryWordLength)
         {
+ 
             if (includeUnknown && (suggestionsLen == 0))
             {
                 std::unique_ptr<SuggestItem> unq(new SuggestItem(input, maxEditDistance + 1, 0));
@@ -261,7 +270,7 @@ namespace symspell {
                 return;
             }
         }
-
+  
         //early termination, if we only want to check if word in dictionary or get its frequency e.g. for word segmentation
         if (maxEditDistance == 0)
         {
@@ -295,6 +304,8 @@ namespace symspell {
             candidates.push_back(input);
         }
 
+
+
         size_t candidatesLen = 1; // candidates.size();
         while (candidatePointer < candidatesLen)
         {
@@ -320,6 +331,7 @@ namespace symspell {
             if (deletesFinded != deletesEnd)
             {
                 dictSuggestions = deletesFinded->second;
+                
                 size_t dictSuggestionsLen = dictSuggestions.size();
                 //iterate through suggestions (to other correct dictionary items) of delete item and add them to suggestion list
                 for (int i = 0; i < dictSuggestionsLen; ++i)
@@ -333,6 +345,7 @@ namespace symspell {
                         continue;
                     auto suggPrefixLen = min(suggestionLen, prefixLength);
                     if (suggPrefixLen > inputPrefixLen && (suggPrefixLen - candidateLen) > maxEditDistance2) continue;
+
 
                     //True Damerau-Levenshtein Edit Distance: adjust distance, if both distances>0
                     //We allow simultaneous edits (deletes) of maxEditDistance on on both the dictionary and the input term.
@@ -418,6 +431,7 @@ namespace symspell {
                         suggestions.push_back(std::move(si));
                         ++suggestionsLen;
                     }
+                    
                 }//end foreach
             }//end if
 
@@ -458,19 +472,10 @@ namespace symspell {
             return r->CompareTo(*l);
         });
 
+        vector<string>().swap(candidates);
+        unordered_set<size_t>().swap(hashset1);
+        unordered_set<size_t>().swap(hashset2);
 
-        //cleaning
-
-        //std::cout << hashset2.size() << std::endl;
-
-        auto candidatesEnd = candidates.end();
-//         for (auto it = candidates.begin(); it != candidatesEnd; ++it)
-//             delete[] * it;
-
-
-        candidates.clear();
-        hashset1.clear();
-        hashset2.clear();
 
         mtx.unlock();
 

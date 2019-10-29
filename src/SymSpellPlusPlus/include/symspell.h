@@ -63,13 +63,10 @@ namespace symspell {
         size_t maxDictionaryWordLength; //maximum dictionary term length
         std::mutex mtx;
 
-        vector<string> candidates;
+        
 
         EditDistance* distanceComparer{ nullptr };
-        unordered_set<size_t> edits;
-        unordered_set<size_t> hashset1; //TODO: use unordered_set<size_t> hashset1;
-        unordered_set<size_t> hashset2; //TODO: use unordered_set<size_t> hashset1;
-        unordered_set<size_t>::iterator hashset2End;  //TODO: use unordered_set<size_t>::iterator hashset2End; 
+        
         hash_c_string stringHash;
         long N = 1024908267229;
 
@@ -84,6 +81,7 @@ namespace symspell {
         unordered_map<string, long> belowThresholdWords;
         unordered_map<string, long>::iterator belowThresholdWordsEnd;
 
+        unordered_set<size_t> edits;
         bool DeleteInSuggestionPrefix(string del, int deleteLen, string suggestion, int suggestionLen);
     };
 }

@@ -77,6 +77,7 @@ Napi::Value LightningSpell::GetSuggestions(const Napi::CallbackInfo& info) {
         suggestions[i] = suggestion;
         i++;
     }
+    items.clear();
     return suggestions;
 }
 
@@ -106,10 +107,11 @@ Napi::Value LightningSpell::IsCorrectlySpelled(const Napi::CallbackInfo& info) {
 
 
     this->symSpell.Lookup(searchTerm, symspell::Verbosity::Top, 0, items);
-
+    size_t itemSize = items.size();
     
+    items.clear();    
 
-    if (items.size() > 0 ) {
+    if (itemSize > 0 ) {
 
         return Napi::Boolean::New(env,true);
     }

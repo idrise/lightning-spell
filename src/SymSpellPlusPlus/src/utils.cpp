@@ -71,6 +71,7 @@ template <typename T> void fromUTF8(const string& source, basic_string<T, char_t
         wstring wword2;
         fromUTF8(word1,wword1);
         fromUTF8(word2,wword2);
+
         int size1 = (int)wword1.size() + 1;
         int size2 = (int)wword2.size() + 1;
         int suppr_dist, insert_dist, subs_dist, val;
@@ -95,11 +96,13 @@ template <typename T> void fromUTF8(const string& source, basic_string<T, char_t
         }
 
         int res = dist[size1*size2 - 1];
+        dist.clear();
 //         delete[] dist;
         return(res);
     }
     int dl_dist_spe(string& word1, string& word2) 
     {
+
         /// Damerau-Levenshtein distance
         ///  Please use lower-case strings
         /// word1 : first word
@@ -183,6 +186,7 @@ template <typename T> void fromUTF8(const string& source, basic_string<T, char_t
         }
 
         int res = dist[size1*size2 - 1];
+        dist.clear();
 //         delete[] dist;
         return(res);
     }
@@ -218,6 +222,7 @@ template <typename T> void fromUTF8(const string& source, basic_string<T, char_t
         }
 
         float res = dist[size1*size2 - 1];
+        dist.clear();
 //         delete[] dist;
         return(res);
     }
