@@ -24,7 +24,10 @@ export class LightningSpell {
             {
                 return b.count-a.count
             }
-            return b.word.localeCompare(a.word)
+            if (a.word !== b.word) {
+                return a.word > b.word ? -1 : 1
+            }
+            return 0
         })
         console.log(sortedSuggestions)
         return sortedSuggestions.map(a=>a.word)
