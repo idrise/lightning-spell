@@ -73,8 +73,11 @@ Napi::Value LightningSpell::GetSuggestions(const Napi::CallbackInfo& info) {
     Napi::Array suggestions = Napi::Array::New(env,items.size());
     int i = 0;
     for(auto const& item: items) {
-        Napi::String suggestion = Napi::String::New(env,item->term);
-        suggestions[i] = suggestion;
+        Napi::Object suggestionObject = Napi::Object::New(env);
+        suggestionObject.Set("distance", Napi::Number::New(env, item->distance));
+        suggestionObject.Set("count", Napi::Number::New(env, item->count));
+        suggestionObject.Set("word", Napi::String::New(env, item->term));
+        suggestions[i] = suggestionObject;
         i++;
     }
     items.clear();
