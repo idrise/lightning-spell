@@ -15,7 +15,7 @@ export class LightningSpell {
     getSuggestions (strName: string, parameters: object = {}):string[] {
         const suggestions = this._addonInstance.getSuggestions(strName,parameters);
 
-        suggestions.sort((a:any,b:any): any => {
+        const sortedSuggestions = suggestions.sort((a:any,b:any): any => {
             if (a.distance !== b.distance)
             {
                 return a.distance-b.distance
@@ -26,8 +26,8 @@ export class LightningSpell {
             }
             return a.word - b.word
         })
-
-        return suggestions.map(a=>a.word)
+        
+        return sortedSuggestions.map(a=>a.word)
     }
     isCorrectlySpelled (strName: string, parameters: object = {}) {
         return this._addonInstance.isCorrectlySpelled(strName,parameters);
