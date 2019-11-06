@@ -29,7 +29,6 @@ export class LightningSpell {
             }
             return 0
         })
-        console.log(sortedSuggestions)
         return sortedSuggestions.map(a=>a.word)
     }
     isCorrectlySpelled (strName: string, parameters: object = {}) {
