@@ -24,9 +24,9 @@ export class LightningSpell {
             {
                 return b.count-a.count
             }
-            return a.word - b.word
+            return b.word.localeCompare(a.word)
         })
-        
+        console.log(sortedSuggestions)
         return sortedSuggestions.map(a=>a.word)
     }
     isCorrectlySpelled (strName: string, parameters: object = {}) {
